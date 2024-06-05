@@ -1,4 +1,20 @@
+import { useState } from "react";
 function ProductForm() {
+  const [productName, setProductName] = useState("");
+  const [productImage, setProductImage] = useState("");
+  const [productPrice, setProductPrice] = useState("");
+  const [productDescription, setProductDescription] = useState("");
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const productForm = {
+      Name: productName,
+      Price: productPrice,
+      ImageUrl: productImage,
+      Description: productDescription,
+    };
+    alert(JSON.stringify(productForm));
+  };
+
   return (
     <form className="post-form">
       <h1>Create Product Form</h1>
@@ -10,7 +26,10 @@ function ProductForm() {
             name="name"
             type="text"
             placeholder="Enter name here"
-            onChange={() => {}}
+            onChange={(event) => {
+              setProductName(event.target.value);
+            }}
+            required
           />
         </label>
       </div>
@@ -22,7 +41,9 @@ function ProductForm() {
             name="image"
             type="text"
             placeholder="Enter image url here"
-            onChange={() => {}}
+            onChange={(event) => {
+              setProductImage(event.target.value);
+            }}
           />
         </label>
       </div>
@@ -34,7 +55,10 @@ function ProductForm() {
             name="price"
             type="number"
             placeholder="Enter price here"
-            onChange={() => {}}
+            onChange={(event) => {
+              setProductPrice(event.target.value);
+            }}
+            required
           />
         </label>
       </div>
@@ -46,14 +70,18 @@ function ProductForm() {
             name="description"
             type="text"
             placeholder="Enter description here"
-            onChange={() => {}}
+            onChange={(event) => {
+              setProductDescription(event.target.value);
+            }}
             rows={4}
             cols={30}
           />
         </label>
       </div>
       <div className="form-actions">
-        <button type="submit">Create</button>
+        <button type="submit" onClick={handleSubmit}>
+          Create
+        </button>
       </div>
     </form>
   );
