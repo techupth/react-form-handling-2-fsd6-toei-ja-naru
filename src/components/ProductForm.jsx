@@ -8,15 +8,19 @@ function ProductForm() {
     event.preventDefault();
     const productForm = {
       Name: productName,
-      Price: productPrice,
+      Price: Number(productPrice),
       ImageUrl: productImage,
       Description: productDescription,
     };
     alert(JSON.stringify(productForm));
+    setProductName("");
+    setProductImage("");
+    setProductPrice("");
+    setProductDescription("");
   };
 
   return (
-    <form className="post-form">
+    <form className="post-form" onSubmit={handleSubmit}>
       <h1>Create Product Form</h1>
       <div className="input-container">
         <label>
@@ -26,6 +30,7 @@ function ProductForm() {
             name="name"
             type="text"
             placeholder="Enter name here"
+            value={productName}
             onChange={(event) => {
               setProductName(event.target.value);
             }}
@@ -41,6 +46,7 @@ function ProductForm() {
             name="image"
             type="text"
             placeholder="Enter image url here"
+            value={productImage}
             onChange={(event) => {
               setProductImage(event.target.value);
             }}
@@ -55,6 +61,7 @@ function ProductForm() {
             name="price"
             type="number"
             placeholder="Enter price here"
+            value={productPrice}
             onChange={(event) => {
               setProductPrice(event.target.value);
             }}
@@ -70,6 +77,7 @@ function ProductForm() {
             name="description"
             type="text"
             placeholder="Enter description here"
+            value={productDescription}
             onChange={(event) => {
               setProductDescription(event.target.value);
             }}
@@ -79,9 +87,7 @@ function ProductForm() {
         </label>
       </div>
       <div className="form-actions">
-        <button type="submit" onClick={handleSubmit}>
-          Create
-        </button>
+        <button type="submit">Create</button>
       </div>
     </form>
   );
