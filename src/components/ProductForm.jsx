@@ -1,6 +1,26 @@
+import { useState } from "react";
 function ProductForm() {
+  const [productName, setProductName] = useState("");
+  const [productImage, setProductImage] = useState("");
+  const [productPrice, setProductPrice] = useState("");
+  const [productDescription, setProductDescription] = useState("");
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const productForm = {
+      Name: productName,
+      Price: Number(productPrice),
+      ImageUrl: productImage,
+      Description: productDescription,
+    };
+    alert(JSON.stringify(productForm));
+    setProductName("");
+    setProductImage("");
+    setProductPrice("");
+    setProductDescription("");
+  };
+
   return (
-    <form className="post-form">
+    <form className="post-form" onSubmit={handleSubmit}>
       <h1>Create Product Form</h1>
       <div className="input-container">
         <label>
@@ -10,7 +30,11 @@ function ProductForm() {
             name="name"
             type="text"
             placeholder="Enter name here"
-            onChange={() => {}}
+            value={productName}
+            onChange={(event) => {
+              setProductName(event.target.value);
+            }}
+            required
           />
         </label>
       </div>
@@ -22,7 +46,10 @@ function ProductForm() {
             name="image"
             type="text"
             placeholder="Enter image url here"
-            onChange={() => {}}
+            value={productImage}
+            onChange={(event) => {
+              setProductImage(event.target.value);
+            }}
           />
         </label>
       </div>
@@ -34,7 +61,11 @@ function ProductForm() {
             name="price"
             type="number"
             placeholder="Enter price here"
-            onChange={() => {}}
+            value={productPrice}
+            onChange={(event) => {
+              setProductPrice(event.target.value);
+            }}
+            required
           />
         </label>
       </div>
@@ -46,7 +77,10 @@ function ProductForm() {
             name="description"
             type="text"
             placeholder="Enter description here"
-            onChange={() => {}}
+            value={productDescription}
+            onChange={(event) => {
+              setProductDescription(event.target.value);
+            }}
             rows={4}
             cols={30}
           />
