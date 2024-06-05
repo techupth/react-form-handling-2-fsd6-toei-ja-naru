@@ -10,7 +10,7 @@ function ProductForm() {
     event.preventDefault();
     const data = {
       name: name,
-      price: price,
+      price: Number(price),
       image: imgUrl,
       discription: description,
     };
